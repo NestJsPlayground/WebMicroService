@@ -15,17 +15,6 @@ export const environment = {
 
   // unless in local development mode we will use Kubernetes service discovery and env to inject
   mongo: process.env.MONGO_HOST || `mongodb://${ process.env.MONGO || (envType === 'dev' ? 'localhost:47017' : 'mongo:47017') }/${ this.appName }`
-
-
-  ,
-
-
-  twitter: {
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-  }
 };
 
 console.log(environment);
