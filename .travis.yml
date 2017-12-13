@@ -1,0 +1,18 @@
+sudo: required
+
+language: node_js
+  - "8"
+
+services:
+  - docker
+
+install:
+  - docker-compose -f docker-compose.test.yml build
+
+script:
+  - docker-compose -f docker-compose.test.yml up --exit-code-from app-test
+
+after_success:
+  - docker build -t $DOCKER_USERNAME/demo-svc-twitter .
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push $DOCKER_USERNAME/demo-svc-twitter

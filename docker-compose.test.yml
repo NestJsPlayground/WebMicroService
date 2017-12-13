@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:3.4-jessie
+    command: mongod --port 47017
+    tmpfs: /data/db
+  consul:
+    image: consul
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+  app-test:
+    build: .
+    image: app
+    environment:
+      - NODE_ENV=test
+    command: npm run test
+    depends_on:
+      - mongo
+      - consul

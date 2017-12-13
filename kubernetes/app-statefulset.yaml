@@ -1,0 +1,56 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: apitwitter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: apitwitter
+        tier: frontend
+        cversion: "4"
+    spec:
+      containers:
+      - image: tilen/demo-svc-twitter
+        name: apitwitter
+        ports:
+        - containerPort: 3000
+          name: server
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        env:
+          - name: MONGO_HOST
+            valueFrom:
+              secretKeyRef:
+                name: mongo-db-secret-watch
+                key: connstring.txt
+          - name: TWITTER_CONSUMER_KEY
+            valueFrom:
+              secretKeyRef:
+                name: twitter
+                key: TWITTER_CONSUMER_KEY.txt
+          - name: TWITTER_CONSUMER_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: twitter
+                key: TWITTER_CONSUMER_SECRET.txt
+          - name: TWITTER_ACCESS_TOKEN_KEY
+            valueFrom:
+              secretKeyRef:
+                name: twitter
+                key: TWITTER_ACCESS_TOKEN_KEY.txt
+          - name: TWITTER_ACCESS_TOKEN_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: twitter
+                key: TWITTER_ACCESS_TOKEN_SECRET.txt
+          - name: NODE_ENV
+            value: "prod"
+          - name: LOGSTASH_HOST
+            value: "log.tomakic.com"
