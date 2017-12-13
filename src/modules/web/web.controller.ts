@@ -21,14 +21,17 @@ export class TwitterController {
   async root() {
     let jobsFound;
     try {
-      jobsFound = await rp({uri: 'http://apijob:3000/job'});
+      jobsFound = await rp({uri: 'http://35.198.168.200:3000/job', json: true });
     } catch (e) {
       return e.message;
     }
     const out = [];
     for (let i = 0; i < jobsFound.length; i++) {
       if (jobsFound[i].page) {
-        const t =  {jid: jobsFound[i]._id, www:  await rp({uri: jobsFound[i].page})  };
+        const regex = /(&nbsp;|<([^>]+)>)/ig
+          ,   body = await rp({uri: jobsFound[i].page})
+          ,   result = body.replace(regex, '');
+        const t =  {jid: jobsFound[i]._id, www:  result  };
         out.push(t);
         // await new this.entryModel(t).save();
       }
