@@ -21,7 +21,7 @@ export class TwitterController {
   async root() {
     let jobsFound;
     try {
-      jobsFound = await rp({uri: 'http://35.198.168.200:3000/job', json: true });
+      jobsFound = await rp({uri: 'http://apijob:3000/job', json: true });
     } catch (e) {
       return e.message;
     }
