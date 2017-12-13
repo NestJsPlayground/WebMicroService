@@ -1,19 +1,19 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: apitwitter
+  name: apiweb
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: apitwitter
+        app: apiweb
         tier: frontend
         cversion: "4"
     spec:
       containers:
       - image: tilen/demo-svc-twitter
-        name: apitwitter
+        name: apiweb
         ports:
         - containerPort: 3000
           name: server

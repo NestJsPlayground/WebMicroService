@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
-import { TwitterController } from './twitter.controller';
-import { entryProviders } from './twitter.providers';
+import { TwitterController } from './web.controller';
+import { entryProviders } from './web.providers';
 
 @Module({
     controllers: [

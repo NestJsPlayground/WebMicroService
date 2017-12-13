@@ -1,5 +1,5 @@
 import { Connection } from 'mongoose';
-import { EntrySchema } from './twitter.schema';
+import { EntrySchema } from './web.schema';
 
 export const entryProviders = [
   {

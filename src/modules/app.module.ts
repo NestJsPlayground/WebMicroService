@@ -6,7 +6,7 @@ import { LoggerMiddleware } from './logger/logger.middleware';
 import { LoggerModule } from './logger/logger.module';
 import { ConsulModule } from './consul/consul.module';
 import { AuthMiddleware } from './auth/auth.middleware';
-import { TwitterModule } from './twitter/twitter.module';
+import { TwitterModule } from './web/web.module';
 
 @Module({
   controllers: [
@@ -26,7 +26,7 @@ export class ApplicationModule implements NestModule {
       .forRoutes( { path: '*', method: RequestMethod.ALL });
 
     consumer.apply(AuthMiddleware).forRoutes(
-      { path: '/twitter', method: RequestMethod.POST }
+      { path: '/web', method: RequestMethod.POST }
     );
   }
 }

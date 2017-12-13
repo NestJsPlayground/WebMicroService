@@ -1,3 +1,5 @@
-[![Build Status](https://travis-ci.org/NestJsPlayground/TwitterMicroService.svg?branch=master)](https://travis-ci.org/NestJsPlayground/TwitterMicroService)
+[![Build Status](https://travis-ci.org/NestJsPlayground/WebMicroService.svg?branch=master)](https://travis-ci.org/NestJsPlayground/WebMicroService)
 
-This microservice checks in intervals for new twitter data. And sets data to other microservice (twitter svc).
+
+
+Web parser for job microservice.
